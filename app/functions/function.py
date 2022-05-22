@@ -16,6 +16,11 @@ def read_archive():
         data.append(str(row))
     return data
 
+def normalize_invoices(data):
+    result = data.to_json(orient="records")
+    parsed = json.loads(result)
+    return result
+
 
 def choose_table():
     falta_promessa = []
