@@ -3,6 +3,7 @@ from csv import DictReader
 import pandas as pd
 from datetime import date
 import smtplib
+import json
 
 
 PATH = os.getenv("FILEPATH")
@@ -19,7 +20,7 @@ def read_archive():
 def normalize_invoices(data):
     result = data.to_json(orient="records")
     parsed = json.loads(result)
-    return result
+    return parsed
 
 
 def choose_table():
