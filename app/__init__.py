@@ -4,7 +4,7 @@ from app.functions import function
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email import encoders
-import smtplib
+import smtplib 
 import json
 from flask import jsonify
 
@@ -41,8 +41,8 @@ def read_promessa():
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
-@app.get("/Promessa_nao_atende")
-def read_promessa():
+@app.get("/Promessa_nao_aten")
+def read_promessa2():
     result = function.choose_table(1)
     print(type(result))
     parsed = function.normalize_invoices(result)
@@ -52,7 +52,7 @@ def read_promessa():
     return response
 
 @app.get("/Falta_de_promessa")
-def read_promessa():
+def read_promessa3():
     result = function.choose_table(3)
     print(type(result))
     parsed = function.normalize_invoices(result)
@@ -62,7 +62,7 @@ def read_promessa():
     return response
 
 @app.get("/Promessa_Vencida")
-def read_promessa():
+def read_promessa4():
     result = function.choose_table(4)
     print(type(result))
     parsed = function.normalize_invoices(result)
@@ -74,24 +74,23 @@ def read_promessa():
 
 @app.get("/sent_mail")
 def sent_email():
+    
     My_Address ='carlos@fmloliveira.com'
     Passoword ='solrac22'
     text, email = function.emails()
     email2 = [email]
-    print(My_Address)
-    print(Passoword)
 
-    msg = MIMEText(text, 'plain')
-    msg['From']=My_Address
-    msg['To']= '.join([‘cnhi@fmloliveira.com’])'
+    msg = MIMEMultipart() 
+    msg['From']= My_Address
+    msg['To']= 'cnhi@fmloliveira.com'
     msg['Subject']="This is TEST"
-    raw = msg.as_string()
+    msg.attach(MIMEText('Testando', 'plain'))
 
-    s = smtplib.SMTP(host='smtp.gmail.com', port= 587)
-    s.starttls()
-    s.ehlo()
-    s.login(My_Address, Passoword)
+    smtp = smtplib.SMTP(host='email-smtp.us-east-1.amazonaws.com', port= 587)
+    smtp.starttls()
+    smtp.ehlo()
+    smtp.login('AKIAUQTLH574IAYUBG6M', 'BLL1kh+GXeKUmmsX+NqJlbBxQ/ZR41y44ai9Gp9kvV+J')
 
-    smtp.sendmail(My_Address, email2, raw)
+    smtp.send_message(msg)
     smtp.quit()
-    return {"TESTE": enviou}
+    return {"TESTE": 'enviou'}
