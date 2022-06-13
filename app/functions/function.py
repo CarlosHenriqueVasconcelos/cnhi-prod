@@ -28,7 +28,6 @@ def normalize_invoices(data):
 def choose_table():
     link = 'https://projeto-cnhi-default-rtdb.firebaseio.com/'
     request = requests.get(f'{link}/.json')
-    print(request)
     dic = request.json()
     promessa_n_atende = []
     promessa_a_vencer = []
@@ -36,30 +35,25 @@ def choose_table():
     normal = []
     falta_promessa = []
    
-    '''for i in dic:
-        dic[i]['SHIP DUE'] = pd.to_datetime(dic[i]['SHIP DUE'])
-        dic[i]['PROMISE'] = pd.to_datetime(dic[i]['PROMISE'])
-        dic[i]['Last Updated'] = pd.to_datetime(dic[i]['Last Updated'])
-    '''
     day = pd.to_datetime(datetime.now())
     weekday = pd.to_datetime(datetime.now().weekday())
 
     for i in dic:
         for row in dic[i]:
             if 'PROMISE' not in row:
-                print('1')
+                #print('1')
                 falta_promessa.append(row)
             elif pd.to_datetime(row['SHIP DUE']) < pd.to_datetime(row['PROMISE']):
-                print('2')
+                #print('2')
                 promessa_n_atende.append(row)
             elif pd.to_datetime(row['PROMISE']) == (day+timedelta(days=2 )):
-                print('3')
+                #print('3')
                 promessa_a_vencer.append(row)
             elif pd.to_datetime(row['PROMISE']) < day:
-                print('4')
+                #print('4')
                 promessa_vencida.append(row)
             else:
-                print('5')
+                #print('5')
                 normal.append(row)
     return falta_promessa
 
