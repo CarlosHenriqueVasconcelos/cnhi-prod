@@ -27,10 +27,12 @@ def promessa_não_atende():
 def Promessa_a_vencer():
     win = function.win()
     return win
+
 @app.get("/normal")
 def normal():
     normal = function.normal()
     return normal
+    
 @app.get("/promessa_Vencida")
 def promessa_vencida():
     expired = function.expired()
