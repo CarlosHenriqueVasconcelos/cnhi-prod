@@ -7,29 +7,31 @@ from email import encoders
 import smtplib 
 import json
 from flask import jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
-@app.get("/Falta_de_Promessa")
+@app.get("/falta_de_promessa")
 def falta_de_promessa():
     awnser = function.awnser()
     return awnser
 
 
-@app.get("/Promessa_não_Atende")
+@app.get("/promessa_nao_atende")
 def promessa_não_atende():
     lack = function.lack()
     return lack
 
-@app.get("/Promessa_a_Vencer")
+@app.get("/promessa_a_vencer")
 def Promessa_a_vencer():
     win = function.win()
     return win
-@app.get("/Normal")
+@app.get("/normal")
 def normal():
     normal = function.normal()
     return normal
-@app.get("/Promessa_Vencida")
+@app.get("/promessa_Vencida")
 def promessa_vencida():
     expired = function.expired()
     return expired
