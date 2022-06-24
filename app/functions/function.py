@@ -14,17 +14,19 @@ TEXT = os.getenv("TEXT")
 PASSWORD = os.getenv("PASSWORD")
 EMAIL = os.getenv("EMAIL")
 
-promise_to_win = []
-lack_promise = []
-promise_not_answer = []
-expired_promise = []
-normal = []
+
 
 def choose_table(a):
     link = 'https://projeto-cnhi-default-rtdb.firebaseio.com/'
     request = requests.get(f'{link}/.json')
     dic = request.json()
 
+    promise_to_win = []
+    lack_promise = []
+    promise_not_answer = []
+    expired_promise = []
+    normal = []
+    
     day = pd.to_datetime(datetime.now())
     weekday = pd.to_datetime(datetime.now().weekday())
 
