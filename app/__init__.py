@@ -14,13 +14,13 @@ CORS(app)
 
 @app.get("/promessa_nao_atende")
 def falta_de_promessa():
-    lack = function.lack()
+    lack = function.awnser()
     return lack
 
 
 @app.get("/falta_de_promessa")
 def promessa_não_atende():
-    awnser = function.awnser()
+    awnser = function.lack()
     return awnser
 
 @app.get("/promessa_a_vencer")
@@ -33,7 +33,7 @@ def normal():
     normal = function.normal()
     return normal
     
-@app.get("/promessa_Vencida")
+@app.get("/promessa_vencida")
 def promessa_vencida():
     expired = function.expired()
     return expired
