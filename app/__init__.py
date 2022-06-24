@@ -12,16 +12,16 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-@app.get("/falta_de_promessa")
-def falta_de_promessa():
-    awnser = function.awnser()
-    return awnser
-
-
 @app.get("/promessa_nao_atende")
-def promessa_não_atende():
+def falta_de_promessa():
     lack = function.lack()
     return lack
+
+
+@app.get("/falta_de_promessa")
+def promessa_não_atende():
+    awnser = function.awnser()
+    return awnser
 
 @app.get("/promessa_a_vencer")
 def Promessa_a_vencer():
